@@ -1,11 +1,13 @@
 import express, { Application, NextFunction, Request, Response } from "express";
 import cors from "cors";
+import moduleRouter from "./app/routes/routes";
 
 const app: Application = express();
 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use("/api", moduleRouter);
 
 app.get("/", (req: Request, res: Response) => {
   res.send({ Message: "Library Management System is running." });
