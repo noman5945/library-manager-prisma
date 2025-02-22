@@ -8,6 +8,16 @@ const addNewBook = async (bookData: BookType) => {
   return result;
 };
 
+const updateBookById = async (updateData: any, id: string) => {
+  await prisma.book.findUniqueOrThrow({ where: { bookId: id } });
+  const result = await prisma.book.update({
+    where: { bookId: id },
+    data: updateData,
+  });
+  return result;
+};
+
 export const bookServices = {
   addNewBook,
+  updateBookById,
 };
