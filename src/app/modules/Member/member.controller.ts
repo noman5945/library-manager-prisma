@@ -24,7 +24,52 @@ const readAllMember = requestHandler(async (req: Request, res: Response) => {
   });
 });
 
+const readMemeberById = requestHandler(async (req: Request, res: Response) => {
+  const memberId = req.params.memberId;
+  const result = await memberServices.readMemberById(memberId);
+  sendResponse(res, {
+    success: true,
+    statusCode: 200,
+    message: "Member retrieved successfully",
+    data: result,
+  });
+});
+
+const updateMemeberById = requestHandler(
+  async (req: Request, res: Response) => {
+    const memberId = req.params.memberId;
+    const updatedBody = req.body;
+    const result = await memberServices.updateMemberInfoById(
+      memberId,
+      updatedBody
+    );
+
+    sendResponse(res, {
+      success: true,
+      statusCode: 200,
+      message: "Member's info updated successfully",
+      data: result,
+    });
+  }
+);
+const deleteMemeberById = requestHandler(
+  async (req: Request, res: Response) => {
+    const memberId = req.params.memberId;
+    const result = await memberServices.deleteMemberbyId(memberId);
+
+    sendResponse(res, {
+      success: true,
+      statusCode: 200,
+      message: "Member deleted successfully",
+      data: result,
+    });
+  }
+);
+
 export const memberControllers = {
   createNewMember,
   readAllMember,
+  readMemeberById,
+  updateMemeberById,
+  deleteMemeberById,
 };

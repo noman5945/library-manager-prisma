@@ -9,7 +9,21 @@ const readAllMembers = async () => {
   return await memberRepository.read();
 };
 
+const readMemberById = async (memberId: string) => {
+  return await memberRepository.read(memberId);
+};
+
+const deleteMemberbyId = async (memberId: string) => {
+  return await memberRepository.delete(memberId);
+};
+
+const updateMemberInfoById = async (memberId: string, updateData: any) => {
+  return await memberRepository.update(memberId, updateData);
+};
 export const memberServices = {
   createNewMember,
   readAllMembers,
+  readMemberById,
+  deleteMemberbyId,
+  updateMemberInfoById,
 };
