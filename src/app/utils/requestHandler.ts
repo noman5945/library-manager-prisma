@@ -6,7 +6,7 @@ const requestHandler = (fn: RequestHandler) => {
       await fn(req, res, next);
     } catch (error) {
       res.status(500).json({
-        success: true,
+        success: false,
         statusCode: 500,
         message: "Error! Something went wrong.",
         error: error,

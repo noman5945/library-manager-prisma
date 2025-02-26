@@ -31,7 +31,41 @@ const updateBookById = requestHandler(async (req: Request, res: Response) => {
   });
 });
 
+const readAllBooks = requestHandler(async (req: Request, res: Response) => {
+  const result = await bookServices.readAllBooks();
+  sendResponse(res, {
+    success: true,
+    statusCode: 200,
+    message: "Books retrieved successfully",
+    data: result,
+  });
+});
+
+const readBookId = requestHandler(async (req: Request, res: Response) => {
+  const id = req.params.bookId;
+  const result = await bookServices.readAllBooks(id);
+  sendResponse(res, {
+    success: true,
+    statusCode: 200,
+    message: "Book retrieved successfully",
+    data: result,
+  });
+});
+
+const deleteBookbyId = requestHandler(async (req: Request, res: Response) => {
+  const id = req.params.bookId;
+  const result = await bookServices.deleteBookbyId(id);
+  res.status(200).json({
+    success: true,
+    statusCode: 200,
+    message: "Book successfully deleted",
+  });
+});
+
 export const bookController = {
   addNewBook,
   updateBookById,
+  readAllBooks,
+  readBookId,
+  deleteBookbyId,
 };
